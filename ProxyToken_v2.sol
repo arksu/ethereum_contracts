@@ -337,7 +337,7 @@ contract Controller is Finalizable {
         return ledger.balanceOf(_a);
     }
 
-    function allowance(address _owner, address _spender) public onlyToken constant returns (uint256) {
+    function allowance(address _owner, address _spender) public onlyToken view returns (uint256) {
         return ledger.allowance(_owner, _spender);
     }
 
@@ -382,7 +382,7 @@ contract Ledger is Finalizable {
     using SafeMath for uint256;
 
     address public controller;
-    mapping(address => uint256) balances;
+    mapping(address => uint256) internal balances;
     mapping(address => mapping(address => uint256)) internal allowed;
     uint256 totalSupply_;
     bool public mintingFinished = false;
